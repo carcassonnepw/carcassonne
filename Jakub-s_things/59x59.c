@@ -16,47 +16,26 @@ struct tile
 
 };
 
-int NextFree(int *table)
-{
-	int n;
-	for (n = 0; n < 62; n++)
-	{
-		if (table+n >0)
-		{
 
-		}
-		else
-		{
-			return n;
-		}
-	}
-}
 
 
 
 int main() {
 	char input[30][5] = { "RPRP0","PPRR0","PRRR0","PCCP0","CPPP0","CRRP0","RCPR0","RCRR0","RRRR0","PCPC0","RCRP0","CSCC0","PPRPT","PPPPT","RPRP0","PPRR0","PRRR0","PCP?0","CPPP0","CRRP0","RCPR0","RCRR0","RRRR0","PCPC0","RCRP0","CSCC0","PPRPT","PPPPT","RCRP0","CSCC0" };
-	int neighbours[62];
 	char temp[6];
-	int n, m, rng=0, now, index, MaIn;
+	int n, m, rng=0;
 	char board[3481][5] = { 0 };
-	for (m = 0; m < 5; m++)
+	for (n = 0; n < 30; n++)
 	{
-		board[1681][m] = input[1][m];
-	}
-	now = 1681;
+		//temp = { tiles[n].top, tiles[n].right,  tiles[n].bottom,  tiles[n].left,  tiles[n].temple, }
 
-	for (n = 1; n < 30; n++)
-	{
-		index = (NextFree (&neighbours[0]));
-		neighbours[index] = now + 59;
-		index = (NextFree(&neighbours[0]));
-		neighbours[index] = now + 1;
-		index = (NextFree(&neighbours[0]));
-		neighbours[index] = now - 59;
-		index = (NextFree(&neighbours[0]));
-		neighbours[index] = now - 1;
-		MaIn = index;
+		temp[0] = input[n][0];
+		temp[1] = input[n][1];
+		temp[2] = input[n][2];
+		temp[3] = input[n][3];
+		temp[4] = input[n][4];
+
+		rng = rand() % 3481;
 		for (m = 0; m < 5; m++)
 		{
 			board[rng][m] = input[n][m];
