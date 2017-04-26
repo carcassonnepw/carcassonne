@@ -35,6 +35,8 @@ int main(int argc, const char * argv[]) {
     
     readInput("input.txt");
    // showavailable();
+   placetile(0,3,5);
+        placetile(2,2,3);
     	    printf("COMMANDS FOR CARCASSONNE:\n 1: SHOW TILES AVAILABLE\n 2: SHOW GRID \n 3: RANDOM FILL GRID\n 99: EXIT\n");
     while(stop==0)
     {
@@ -48,9 +50,14 @@ int main(int argc, const char * argv[]) {
       			break;
       		case 2:
       			showgrid(grid);
+      			rotation(1,2);
+
       			break;
       		case 3:
 			  	fillrand();
+			  	break;
+			  	case 4:
+			  	showtilesongrid();
 			  	break;
 			case 99:
 				stop=1;
@@ -61,7 +68,8 @@ int main(int argc, const char * argv[]) {
 	}
     
     
-  
+        
+
         showavailable();
 
     getchar();

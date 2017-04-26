@@ -7,4 +7,5 @@ extern int gids;
 int checkisempty(int x, int y);
 void placetile(int id, int x, int y);
 void showgrid(int grid[30][30]);
+void showtilesongrid();
 #endif

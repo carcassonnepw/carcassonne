@@ -54,3 +54,12 @@ void showgrid(int grid[GRIDSIZE][GRIDSIZE])
 
 	}
 }
+void showtilesongrid()
+{
+	int id;
+	int i;
+	for(i=gids;i>0;i--){
+	id = tilesongrid[i].ID;
+	printf("TILE GID:%d (%d,%d)# %c%c%c%c #\n",tilesongrid[i].GID, tilesongrid[i].x,tilesongrid[i].y,tiles[id].top, tiles[id].right,tiles[id].bottom,tiles[id].left);
+}
+}
