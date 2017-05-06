@@ -19,8 +19,8 @@ void showavailable()
 void rotation(int GID, int times)
 {
 	int i;
-	int temp1, temp2,temp3;
-	int tileid = tilesongrid[GID].ID;
+	int temp1;
+	int tileid = GID;
 	for(i=times;i>0;i--)
 	{		
 		temp1= tiles[tileid].right;
