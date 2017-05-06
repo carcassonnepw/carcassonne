@@ -37,12 +37,12 @@ int ix, yg, jd; // manual placing variables
     
     readInput("input.txt");
    // showavailable();
-    	    printf("COMMANDS FOR CARCASSONNE:\n 1: SHOW TILES AVAILABLE\n 2: SHOW GRID \n 3: RANDOM FILL GRID\n 70: Place One Tile\n 99: EXIT\n");
+    	    printf("COMMANDS FOR CARCASSONNE:\n 1: SHOW TILES AVAILABLE\n 2: SHOW GRID \n 3: RANDOM FILL GRID\n 4: SHOW PLACED tILES\n 70: Place One Tile\n 99: EXIT\n");
     while(stop==0)
     {
     	   scanf("%d",&command);
 
-    	    printf("COMMANDS FOR CARCASSONNE:\n 1: SHOW TILES AVAILABLE\n 2: SHOW GRID \n 3: RANDOM FILL GRID\n 70: Place One Tile\n 99: EXIT\n");
+    	    printf("COMMANDS FOR CARCASSONNE:\n 1: SHOW TILES AVAILABLE\n 2: SHOW GRID \n 3: RANDOM FILL GRID\n 4: SHOW PLACED tILES\n 70: Place One Tile\n 99: EXIT\n");
       switch(command)
       	{
       		case 1:
