@@ -1,3 +1,4 @@
+
 #ifndef STRUCTURES_H
 #define STRUCTURES_H
 #define TILECOUNT 87
@@ -21,6 +22,11 @@ struct tileongrid
 	
 
 };
+struct twoints {
+	int a;
+	int b;
+};
+
 struct tile tiles [TILECOUNT];
 struct tileongrid tilesongrid [900];
 #endif
