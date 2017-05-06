@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -31,18 +32,17 @@ int main(int argc, const char * argv[]) {
     int i=0;
     int command;
     int stop=0;
+int ix, yg, jd; // manual placing variables
    // scanf("%s",filename);
     
     readInput("input.txt");
    // showavailable();
-   placetile(0,3,5);
-        placetile(2,2,3);
-    	    printf("COMMANDS FOR CARCASSONNE:\n 1: SHOW TILES AVAILABLE\n 2: SHOW GRID \n 3: RANDOM FILL GRID\n 99: EXIT\n");
+    	    printf("COMMANDS FOR CARCASSONNE:\n 1: SHOW TILES AVAILABLE\n 2: SHOW GRID \n 3: RANDOM FILL GRID\n 70: Place One Tile\n 99: EXIT\n");
     while(stop==0)
     {
     	   scanf("%d",&command);
 
-    	    printf("COMMANDS FOR CARCASSONNE:\n 1: SHOW TILES AVAILABLE\n 2: SHOW GRID \n 3: RANDOM FILL GRID\n 99: EXIT\n");
+    	    printf("COMMANDS FOR CARCASSONNE:\n 1: SHOW TILES AVAILABLE\n 2: SHOW GRID \n 3: RANDOM FILL GRID\n 70: Place One Tile\n 99: EXIT\n");
       switch(command)
       	{
       		case 1:
@@ -54,14 +54,21 @@ int main(int argc, const char * argv[]) {
 
       			break;
       		case 3:
-			  	fillrand();
-			  	break;
-			  	case 4:
-			  	showtilesongrid();
-			  	break;
-			case 99:
-				stop=1;
-				break;
+			  fillrand();
+			  break;
+		case 4:
+			  showtilesongrid();
+			  break		
+		case 70:
+			printf("\ninput tile and position\n");
+			scanf("%d %d %d",&jd, &ix, &yg);
+			placetile(jd, ix, yg);
+			showgrid(grid);
+			break;;
+		      
+		case 99:
+			stop=1;
+			break;
 				
 
 		  }
