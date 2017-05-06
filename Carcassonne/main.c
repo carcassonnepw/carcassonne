@@ -37,13 +37,14 @@ int ix, yg, jd; // manual placing variables
     
     readInput("input.txt");
    // showavailable();
-    	    printf("COMMANDS FOR CARCASSONNE:\n 1: SHOW TILES AVAILABLE\n 2: SHOW GRID \n 3: RANDOM FILL GRID\n 4: SHOW PLACED tILES\n 70: Place One Tile\n 99: EXIT\n");
-    while(stop==0)
-    {
-    	   scanf("%d",&command);
+	printf("COMMANDS FOR CARCASSONNE:\n 1: SHOW TILES AVAILABLE\n 2: SHOW GRID \n 3: RANDOM FILL GRID\n 4: SHOW PLACED tILES\n 10:ROTATE\n 70: Place One Tile\n 99: EXIT\n");
+	while (stop == 0)
+	{
+		scanf("%d", &command);
 
-    	    printf("COMMANDS FOR CARCASSONNE:\n 1: SHOW TILES AVAILABLE\n 2: SHOW GRID \n 3: RANDOM FILL GRID\n 4: SHOW PLACED tILES\n 70: Place One Tile\n 99: EXIT\n");
-      switch(command)
+
+		printf("COMMANDS FOR CARCASSONNE:\n 1: SHOW TILES AVAILABLE\n 2: SHOW GRID \n 3: RANDOM FILL GRID\n 4: SHOW PLACED tILES\n 10:ROTATE\n 70: Place One Tile\n 99: EXIT\n");
+		switch (command)
       	{
       		case 1:
       			showavailable();
@@ -58,7 +59,12 @@ int ix, yg, jd; // manual placing variables
 			  break;
 		case 4:
 			  showtilesongrid();
-			  break		
+			  break
+		case 10:
+			printf("\ninput id and angle:\n");
+			scanf("%d %d", &jd, &an);
+			rotation(jd, an);
+			break;
 		case 70:
 			printf("\ninput tile and position\n");
 			scanf("%d %d %d",&jd, &ix, &yg);
