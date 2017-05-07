@@ -1,6 +1,7 @@
 #include "Auto.h"
 #include "structures.h"
 #include "gridmanager.h"
+#include "LookFor.h"
 #include <math.h>
 #include <time.h>
 
@@ -29,32 +30,21 @@ struct fourpos getneighb(int x, int y)
 	return solution;
 }
 
-void Delay(int time)
-{
-	const time_t start = time(NULL);
-
-	time_t current;
-	do {
-		/* get current time */
-		time(&current);
-
-	} while (difftime(current, start) < dly);
-}
-
 
 void Placer()
 {
 	struct pos neigh[120], Lplaced;
-	int lastdex = 0, n, dist, nextplac;
+	int lastdex = 0, n, nextplac=1, m;
 	struct fourpos tempos;
 	char triangles[5];
 	struct twoints ajd;
+	long dist;
 	//-----------------------------------
 
-	placetile(1, 15, 15);
+	placetile(0, 15, 15);
 	Lplaced.x = 15;
 	Lplaced.y = 15;
-	for (n = 0; n < 30; n++)
+	for (m = 0; m < 15; m++)
 	{
 		tempos = getneighb(Lplaced.x, Lplaced.y);
 			neigh[lastdex] = tempos.a;
@@ -66,23 +56,48 @@ void Placer()
 			neigh[lastdex] = tempos.d;
 			lastdex++;
 
-			dist = 1000;
-			for (n = 0; n < lastdex; n++)
+			dist = 300000;
+			for (n = 0; n < lastdex-1; n++);
 			{
-				printf("%d %d\n", neigh[n].x, neigh[n].y);
-				if (dist > sqrt(neigh[n].x*neigh[n].x + neigh[n].y*neigh[n].y)) nextplac = n;
+				if (dist > sqrt(pow(abs(15-neigh[n].x), 2)+pow(abs(15-neigh[n].y), 2)))
+				{
+					nextplac = n;
+					dist = sqrt(pow(abs(15 - neigh[n].x), 2) + pow(abs(15 - neigh[n].y), 2));
+				}
+				else
+				{
+					
+				}
 			}
+			if (nextplac > lastdex+1)
+			{
+				return 0;
+			}
+			else
+			{
 
-			tempos=getneighb(neigh[nextplac].x, neigh[nextplac].y);
+			}
+			tempos=getneighb(neigh[nextplac+1].x, neigh[nextplac+1].y);
 
-			triangles[0] = tiles[tilesongrid[grid[tempos.b.x] [tempos.b.y]].ID].left;
+			triangles[0] = tiles[tilesongrid[grid[tempos.a.x] [tempos.a.y]].ID].left;
 			triangles[1] = tiles[tilesongrid[grid[tempos.b.x] [tempos.b.y]].ID].right;
 			triangles[2] = tiles[tilesongrid[grid[tempos.c.x] [tempos.c.y]].ID].bottom;
 			triangles[3] = tiles[tilesongrid[grid[tempos.d.x] [tempos.d.y]].ID].top;
 
+			printf("triangl:%s %d %d %d\n", triangles, tempos.d.x, tempos.d.y, tempos.b.x);
+
 			ajd = FindTile(triangles);
 			rotation(ajd.a, ajd.b);
-			placetile(ajd.a,neigh[nextplac].x, neigh[nextplac].y);
+			if (tiles[ajd.a].availability == 1)
+			{
+				//printf ()
+				placetile(ajd.a, neigh[nextplac].x, neigh[nextplac].y);
+			}
+			else
+			{
+			//	printf("%d", ajd.a);
+			//	printf("___%s\n", tiles[ajd.a]);
+			}
 
 	}
 }
