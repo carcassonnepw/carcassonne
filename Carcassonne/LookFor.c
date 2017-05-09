@@ -38,6 +38,7 @@ struct twoints FindTile(char criterium [5]) {
 				if ((criterium[0] == tiles[n].top || criterium[0] == 33)&& (criterium[1] == tiles[n].right || criterium[1] == 33) && (criterium[2] == tiles[n].bottom || criterium[2] == 33) && (criterium[3] == tiles[n].left || criterium[3] == 33) && tiles[n].availability==1)   //checking if tile fits criterium, or if there is no criterium
 				{
 					bool = bool;  //match, or no criterium
+					printf("____________%s\n", criterium);
 		
 				}
 				else
