@@ -45,7 +45,14 @@ void showgrid(int grid[GRIDSIZE][GRIDSIZE])
 		{
 			
 						
-			printf("|%-*d",3,grid[i][j]);
+						if (grid[i][j] == 0)
+			{
+				printf("|   ");
+			}
+			else
+			{
+				printf("|%-*d", 3, grid[i][j]);
+			}
 		
 		}
 		 printf("\n");
