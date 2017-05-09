@@ -8,7 +8,8 @@ int checkisempty(int x, int y)
 	if(grid[x][y]==0)
 	return 1; else return 0;
 }
-void placetile(int id, int x, int y)
+
+int placetile(int id, int x, int y)
 {
 	
 	if(checkisempty(x,y)==1)
@@ -24,10 +25,22 @@ void placetile(int id, int x, int y)
 	tiles[id].availability =0;
 	grid[x][y]=gids;
 	gids++;
-    } else printf("\n#########ERROR: Tile not available\n");
-} else  printf("\n#########ERROR: Grid is already occupied\n");
+	return 1;
+	}
+	else
+	{
+		printf("\n#########ERROR: Tile not available\n");
+		return 0;
+	}
+} 
+	else
+	{
+		printf("\n#########ERROR: Grid is already occupied\n");
+		return 0;
+	}
 	
 }
+
 void showgrid(int grid[GRIDSIZE][GRIDSIZE])
 {
 	int i;
