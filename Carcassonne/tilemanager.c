@@ -1,7 +1,7 @@
-#include <stdio.h>
+include <stdio.h>
 #include "structures.h"
 
-void showavailable()
+int showavailable()
 {
  	int i=0;
     int sum=0;
@@ -13,7 +13,8 @@ void showavailable()
            sum++;
 		}
 	}
-	if(sum==TILECOUNT) printf("\n#########ERROR: No tiles left\n");
+	if(sum==0) printf("\n#########ERROR: No tiles left\n");
+	return 0;
      
 }
 void rotation(int GID, int times)
