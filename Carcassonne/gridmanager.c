@@ -46,19 +46,20 @@ void showgrid(int grid[GRIDSIZE][GRIDSIZE])
 	int i;
 	int j;
 	int k;
-	printf("xy|   ");
-	for(i=0;i<GRIDSIZE;i++) printf("%-*d|",3,i);
+	int cut = 9;
+	int tnj = 9;
+	printf("xy   |");
+	for(i=cut;i<GRIDSIZE-tnj;i++) printf("%-*d|",3,i);
 	 printf("\n");
-		 		for(k=0;k<(GRIDSIZE+1)*4;k++)printf("*");
+	 for (k = cut; k < ((GRIDSIZE + 1) * 4) - tnj * 4; k++)printf("*");
 	printf("\n");
-	for(i=0;i<GRIDSIZE;i++)
+	for(i=cut;i<GRIDSIZE-tnj;i++)
 	{
 		printf("%*d* ",3,i);
-		for(j=0;j<GRIDSIZE;j++)
+		for(j=cut;j<GRIDSIZE-tnj;j++)
 		{
 			
-						
-						if (grid[i][j] == 0)
+			if (grid[i][j] == 0)
 			{
 				printf("|   ");
 			}
@@ -69,7 +70,7 @@ void showgrid(int grid[GRIDSIZE][GRIDSIZE])
 		
 		}
 		 printf("\n");
-		 		for(k=0;k<(GRIDSIZE+2)*4;k++)printf("_");
+		 for (k = cut+tnj*4; k < (GRIDSIZE + 1) * 4; k++)printf("_");
 		 		printf("\n");
 
 	}
