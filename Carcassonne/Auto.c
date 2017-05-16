@@ -1,6 +1,7 @@
 #include "Auto.h"
 #include "structures.h"
 #include "gridmanager.h"
+#include "tilemanager.h"
 #include "LookFor.h"
 #include <math.h>
 #include <time.h>
@@ -47,17 +48,17 @@ void Placer()
 {
 	srand((int)time(NULL));
 	struct pos neigh[120], Lplaced, closest[30];
-	int lastdex = 0, n, nextplac = 1, m, skip = 0, index=0, random, zaje=0, debug;
+	int lastdex = 0, n, nextplac = 1, m, skip = 0, index=0, random, zaje=0, debug, numpl=0;
 	struct fourpos tempos;
 	char triangles[5];
 	struct twoints ajd;
-	float dist;
+	float dist, mini=0.9;
 	//-----------------------------------
 
 	placetile(0, 15, 15);
 	Lplaced.x = 15;
 	Lplaced.y = 15;
-	for (m = 0; m < 25; m++)
+	for (m = 0; m < 30; m++)
 	{
 		printf("____________________________________________________________________________\n");
 		if (skip == 0)
@@ -78,8 +79,13 @@ void Placer()
 		dist = 30000.0;
 			for (n = 0; n < lastdex; n++)
 			{
+				if (numpl > 4+mini)
+				{
+					mini += 0.5;
+					numpl = 0;
+				}
 				printf("neigh:_%d.%d_", neigh[n].x, neigh[n].y);
-				if ((dist > (sqrt(pow(abs(15-neigh[n].x), 2)+pow(abs(15-neigh[n].y), 2))))&& (sqrt(pow(abs(15 - neigh[n].x), 2) + pow(abs(15 - neigh[n].y), 2))) !=0)
+				if ((dist > (sqrt(pow(abs(15-neigh[n].x), 2)+pow(abs(15-neigh[n].y), 2))))&& (mini < (sqrt(pow(abs(15 - neigh[n].x), 2) + pow(abs(15 - neigh[n].y), 2)))) && (tilesongrid[grid[neigh[n].x][neigh[n].y]].ID <1))
 				{
 					dist = (float)(sqrt(pow(abs(15 - neigh[n].x), 2) + pow(abs(15 - neigh[n].y), 2)));
 					debug = n;
@@ -93,7 +99,7 @@ void Placer()
 			//looking for all closest
 			for (n = 0; n < lastdex; n++)
 			{
-				if ((dist ==(sqrt(pow(15 - neigh[n].x, 2) + pow(15 - neigh[n].y, 2))))&&(grid[neigh[n].x][neigh[n].y])<1)
+				if ((dist+0.2 >(sqrt(pow(15 - neigh[n].x, 2) + pow(15 - neigh[n].y, 2))))&&(grid[neigh[n].x][neigh[n].y])<1)
 				{
 					printf("_%d.%d_", closest[index].x, closest[index].y);
 					closest[index].x = neigh[n].x;
@@ -110,7 +116,7 @@ void Placer()
 			if (index == 0) return (0);
 			if (index == 1)
 			{
-				nextplac = 1;
+				nextplac = 0;
 				printf("\n");
 			}
 			else
@@ -132,13 +138,13 @@ void Placer()
 			tempos=getneighb(closest[nextplac].x, closest[nextplac].y);
 			
 			
-			if (grid[tempos.a.x][tempos.a.y]!=0) triangles[0]= tiles[tilesongrid[grid[tempos.a.x][tempos.a.y]].ID].bottom;
+			if (grid[tempos.a.x][tempos.a.y] != 0) triangles[0] = tiles[tilesongrid[grid[tempos.a.x][tempos.a.y]].ID].right;
 			else triangles[0] = 'z';
 			if (grid[tempos.b.x][tempos.b.y] != 0) triangles[1] = tiles[tilesongrid[grid[tempos.b.x][tempos.b.y]].ID].left;
 			else triangles[1] = 'z';
-			if (grid[tempos.c.x][tempos.c.y] != 0) triangles[2] = tiles[tilesongrid[grid[tempos.c.x][tempos.c.y]].ID].top;
+			if (grid[tempos.c.x][tempos.c.y] != 0) triangles[2] = tiles[tilesongrid[grid[tempos.c.x][tempos.c.y]].ID].bottom;
 			else triangles[2] = 'z';
-			if (grid[tempos.d.x][tempos.d.y] != 0) triangles[3] = tiles[tilesongrid[grid[tempos.d.x][tempos.d.y]].ID].right;
+			if (grid[tempos.d.x][tempos.d.y] != 0) triangles[3] = tiles[tilesongrid[grid[tempos.d.x][tempos.d.y]].ID].top;	
 			else triangles[3] = 'z';
 
 			printf("triangl:%s\n", triangles);
@@ -151,17 +157,20 @@ void Placer()
 				//printf ()
 				if (1 == placetile(ajd.a, closest[nextplac].x, closest[nextplac].y))
 				{
+					printf("placed!\n");
 					Lplaced = closest[nextplac];
 					skip = 0;
-					
+					numpl++;
 					rotation(ajd.a, ajd.b+2);
 				//	printf("---%c%c%c%c\n", tiles[ajd.a].top, tiles[ajd.a].right, tiles[ajd.a].bottom, tiles[ajd.a].left);
 				}
 				else
 				{
 
+
 					for (n = 0; n < (lastdex); n++)
 					{
+					printf("%d_",n);
 						if ((neigh[n].x == closest[nextplac].x)&& (neigh[n].y == closest[nextplac].y))
 						{
 							printf("remove:%d\n", n);
@@ -174,10 +183,10 @@ void Placer()
 
 				}
 			}
-			else
-			{
-
-			}
+			else printf("unavailable");
 
 	}
+	//round 2..............................fight
+	if (showavailable > 0) printf("jeszcze");
+	printf("\n");
 }
