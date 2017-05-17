@@ -36,13 +36,13 @@ int ix, yg, jd; // manual placing variables
     
     readInput("input.txt");
    // showavailable();
-	printf("COMMANDS FOR CARCASSONNE:\n 1: SHOW TILES AVAILABLE\n 2: SHOW GRID \n 3: RANDOM FILL GRID\n 4: SHOW PLACED tILES\n 10:ROTATE\n 70: Place One Tile\n 99: EXIT\n");
-	while (stop == 0)
+			printf("COMMANDS FOR CARCASSONNE:\n 1: SHOW TILES AVAILABLE\n 2: SHOW GRID \n 3: RANDOM FILL GRID\n 4: SHOW PLACED tILES\n 10:ROTATE\n20: CHANGE GRID CROP\n30: PRINT GRID TO FILE\n 70: Place One Tile\n 99: EXIT\n");
+		while (stop == 0)
 	{
 		scanf("%d", &command);
 
 
-		printf("COMMANDS FOR CARCASSONNE:\n 1: SHOW TILES AVAILABLE\n 2: SHOW GRID \n 3: RANDOM FILL GRID\n 4: SHOW PLACED tILES\n 10:ROTATE\n 60: AUTO\n  70: Place One Tile\n 99: EXIT\n");
+				printf("COMMANDS FOR CARCASSONNE:\n 1: SHOW TILES AVAILABLE\n 2: SHOW GRID \n 3: RANDOM FILL GRID\n 4: SHOW PLACED tILES\n 10:ROTATE\n20: CHANGE GRID CROP\n30: PRINT GRID TO FILE\n 70: Place One Tile\n 99: EXIT\n");
 		switch (command)
       	{
       		case 1:
@@ -63,6 +63,13 @@ int ix, yg, jd; // manual placing variables
 			printf("\ninput id and angle:\n");
 			scanf("%d %d", &jd, &an);
 			rotation(jd, an);
+			break;
+		case 20:
+			printf("input upper and lower crop");
+			scanf("%d %d",&cut, &tnj);
+			break;
+		case 30:
+			filegrid(grid, cut, tnj);
 			break;
 		case 60:
 			Placer();
