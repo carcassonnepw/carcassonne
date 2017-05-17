@@ -1,4 +1,5 @@
 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -31,7 +32,8 @@ int main(int argc, const char * argv[]) {
     int i=0;
     int command;
     int stop=0;
-int ix, yg, jd; // manual placing variables
+int ix, yg, jd, an; // manual placing variables
+		int cut = 0, tnj = 0;
    // scanf("%s",filename);
     
     readInput("input.txt");
