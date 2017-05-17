@@ -11,7 +11,43 @@ int checkisempty(int x, int y)
 
 int placetile(int id, int x, int y)
 {
-	
+
+	void filegrid(int grid[GRIDSIZE][GRIDSIZE], int cut, int tnj)//----------------------
+{
+	int i;
+	int j;
+	int k;
+	//int cut = 0;
+	//int tnj = 0;
+	FILE *plik;
+	plik = fopen("output.txt", "w");
+	fprintf(plik, "xy   |");
+	for (i = cut; i<GRIDSIZE - tnj; i++) fprintf(plik, "%-*d|", 3, i);
+	fprintf(plik, "\n");
+	for (k = cut; k < ((GRIDSIZE + 1) * 4) - tnj * 4; k++)fprintf(plik, "*");
+	fprintf(plik, "\n");
+	for (i = cut; i<GRIDSIZE - tnj; i++)
+	{
+		fprintf(plik, "%*d* ", 3, i);
+		for (j = cut; j<GRIDSIZE - tnj; j++)
+		{
+
+			if (grid[i][j] == 0)
+			{
+				fprintf(plik, "|   ");
+			}
+			else
+			{
+				fprintf(plik, "|%-*d", 3, grid[i][j]);
+			}
+
+		}
+		fprintf(plik, "\n");
+		for (k = cut + tnj * 4; k < (GRIDSIZE + 1) * 4; k++)fprintf(plik, "_");
+		fprintf(plik, "\n");
+
+	}
+}
 	if(checkisempty(x,y)==1)
 	{
 	
