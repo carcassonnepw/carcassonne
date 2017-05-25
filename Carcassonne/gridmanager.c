@@ -61,7 +61,8 @@ int placetile(int id, int x, int y)
 	tiles[id].availability =0;
 	grid[x][y]=gids;
 	gids++;
-	return 1;
+
+		return 1;
 	}
 	else
 	{
@@ -76,7 +77,33 @@ int placetile(int id, int x, int y)
 	}
 	
 }
+void filegrid(int grid[GRIDSIZE][GRIDSIZE], int cut, int tnj)//----------------------
+{
+	int i;
+	int j;
+	//int cut = 0;
+	//int tnj = 0;
+	FILE *plik;
+	plik = fopen("output.txt", "w");
+	for (i=0; i<GRIDSIZE; i++)
+	{
+		for (j=0; j<GRIDSIZE; j++)
+		{
 
+			if (grid[i][j] == 0)
+			{
+				fprintf(plik, "00000 ");
+			}
+			else
+			{
+				fprintf(plik, "%c%c%c%c%d ", tiles[tilesongrid[grid[i][j]].ID].top, tiles[tilesongrid[grid[i][j]].ID].right, tiles[tilesongrid[grid[i][j]].ID].bottom, tiles[tilesongrid[grid[i][j]].ID].left, tiles[tilesongrid[grid[i][j]].ID].isTemple);
+			}
+
+		}
+		fprintf(plik, "\n");
+
+	}
+}
 void showgrid(int grid[GRIDSIZE][GRIDSIZE])
 {
 	int i;
