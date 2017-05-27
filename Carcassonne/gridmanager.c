@@ -12,7 +12,7 @@ int checkisempty(int x, int y)
 int placetile(int id, int x, int y)
 {
 
-	void filegrid(int grid[GRIDSIZE][GRIDSIZE], int cut, int tnj)//----------------------
+	//void filegrid(int grid[GRIDSIZE][GRIDSIZE], int cut, int tnj)//----------------------
 {
 	int i;
 	int j;
