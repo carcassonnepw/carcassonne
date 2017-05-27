@@ -6,6 +6,7 @@
 #include "tilemanager.h"
 #include "gridmanager.h"
 #include "TileGen.h"
+#include "Auto.h"
 //extern int grid[GRIDSIZE][GRIDSIZE];
 
 void fillrand() {
@@ -124,6 +125,11 @@ int main(int argc, const char * argv[]) {
                 scanf ("%d %s",&count, filename);
                 tilegen(count,filename);
                 break;
+            case 9:
+                        Placer();
+			//showgrid(grid,0,0);
+			showtilesongrid();
+                        break;
                 
                 
             case 10:

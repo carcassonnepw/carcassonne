@@ -42,6 +42,16 @@ struct twoints {
 	int a;
 	int b;
 };
+struct pos {
+	int x;
+	int y;
+};
+struct fourpos {
+	struct pos a;
+	struct pos b;
+	struct pos c;
+	struct pos d;
+};
 struct tile tiles [TILECOUNT];
 
 
