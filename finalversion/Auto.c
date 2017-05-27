@@ -5,9 +5,17 @@
 #include "LookFor.h"
 #include <math.h>
 #include <time.h>
-#include <stdio.h>
-#include <stdlib.h>
 
+struct pos {
+	int x;
+	int y;
+};
+struct fourpos {
+	struct pos a;
+	struct pos b;
+	struct pos c;
+	struct pos d;
+};
 
 struct fourpos getneighb(int x, int y)
 {
@@ -105,7 +113,7 @@ void Placer()
 				}
 			}
 			printf("\ndist:%lf___%d\n", (sqrt(pow(abs(15 - neigh[debug].x), 2) + pow(abs(15 - neigh[debug].y), 2))), neigh[debug].x);
- 			if (index == 0);
+			if (index == 0) return (0);
 			if (index == 1)
 			{
 				nextplac = 0;
@@ -179,6 +187,34 @@ void Placer()
 
 	}
 	//round 2..............................fight
-	if (showavailable > 0) printf("More");
+	if (showavailable > 0)
+	{
+		printf("jeszcze");
+		for (m = 0; m < index; m++)
+		{
+			printf("%d,%d\n", closest[m].x, closest[m].y);
+			tempos = getneighb(closest[m].x, closest[m].y);
+
+
+			if (grid[tempos.a.x][tempos.a.y] != 0) triangles[0] = tiles[tilesongrid[grid[tempos.a.x][tempos.a.y]].ID].right;
+			else triangles[0] = 'z';
+			if (grid[tempos.b.x][tempos.b.y] != 0) triangles[1] = tiles[tilesongrid[grid[tempos.b.x][tempos.b.y]].ID].left;
+			else triangles[1] = 'z';
+			if (grid[tempos.c.x][tempos.c.y] != 0) triangles[2] = tiles[tilesongrid[grid[tempos.c.x][tempos.c.y]].ID].bottom;
+			else triangles[2] = 'z';
+			if (grid[tempos.d.x][tempos.d.y] != 0) triangles[3] = tiles[tilesongrid[grid[tempos.d.x][tempos.d.y]].ID].top;
+			else triangles[3] = 'z';
+
+			ajd = FindTile(triangles);
+			//if (showavailable < 0) break;
+			if (tilesongrid[grid[closest[m].x][closest[m].y]].ID <1)
+			{
+				placetile(ajd.a, closest[m].x, closest[m].y);
+				rotation(ajd.a, ajd.b + 2);
+				printf("%dadded\n", m);
+			}
+
+		}
+	}
 	printf("\n");
 }
