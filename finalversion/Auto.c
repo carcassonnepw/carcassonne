@@ -5,17 +5,11 @@
 #include "LookFor.h"
 #include <math.h>
 #include <time.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-struct pos {
-	int x;
-	int y;
-};
-struct fourpos {
-	struct pos a;
-	struct pos b;
-	struct pos c;
-	struct pos d;
-};
+
+
 
 struct fourpos getneighb(int x, int y)
 {
@@ -113,7 +107,7 @@ void Placer()
 				}
 			}
 			printf("\ndist:%lf___%d\n", (sqrt(pow(abs(15 - neigh[debug].x), 2) + pow(abs(15 - neigh[debug].y), 2))), neigh[debug].x);
-			if (index == 0) return (0);
+			if (index == 0) printf("") ;
 			if (index == 1)
 			{
 				nextplac = 0;

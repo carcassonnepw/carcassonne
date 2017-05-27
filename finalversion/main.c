@@ -7,8 +7,18 @@
 #include "gridmanager.h"
 #include "TileGen.h"
 #include "Auto.h"
+#include <stdlib.h>
+
 //extern int grid[GRIDSIZE][GRIDSIZE];
 
+
+
+int randomator() {
+
+    int result;
+    result = rand() % (GRIDSIZE + 1) + 0;
+    return result;
+}
 void fillrand() {
     int i;
     for (i = 0; i < TILECOUNT; i++) {
@@ -43,12 +53,7 @@ void counttest() {
     placetile(6, 0, 1);
 }
 
-int randomator() {
 
-    int result;
-    result = rand() % (GRIDSIZE + 1) + 0;
-    return result;
-}
 
 int main(int argc, const char * argv[]) {
 
