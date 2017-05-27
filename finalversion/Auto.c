@@ -47,10 +47,10 @@ struct fourpos getneighb(int x, int y)
 void Placer()
 {
 	srand((int)time(NULL));
-	struct pos neigh[120], Lplaced, closest[30];
+	struct pos neigh[120]= { 0 }, Lplaced, closest[30]= { 0 };
 	int lastdex = 0, n, nextplac = 1, m, skip = 0, index=0, random, zaje=0, debug, numpl=0;
 	struct fourpos tempos;
-	char triangles[5];
+	char triangles[5]= { 0 };
 	struct twoints ajd;
 	float dist, mini=0.9;
 	//-----------------------------------
